@@ -29,17 +29,25 @@ def test_parse_1():
         "title": "Hello",
         "content": "Blah",
     }
-    assert parse_xml_prefix("<cheese>gouda</cheese> <title>Hello</title> <content>Blah</content>") == expected
+    assert (
+        parse_xml_prefix(
+            "<cheese>gouda</cheese> <title>Hello</title> <content>Blah</content>"
+        )
+        == expected
+    )
 
 
 def test_parse_2():
-    assert parse_xml_prefix("<cheese>gouda</cheese> <title>Hel") == {"cheese": "gouda", "title": "Hel"}
+    assert parse_xml_prefix("<cheese>gouda</cheese> <title>Hel") == {
+        "cheese": "gouda",
+        "title": "Hel",
+    }
 
 
 def test_parse_3():
-    assert parse_xml_prefix("<paragraph><sentence>sdfsdfsdfsdfsdf</sentence></paragraph>") == {
-        "paragraph": {"sentence": "sdfsdfsdfsdfsdf"}
-    }
+    assert parse_xml_prefix(
+        "<paragraph><sentence>sdfsdfsdfsdfsdf</sentence></paragraph>"
+    ) == {"paragraph": {"sentence": "sdfsdfsdfsdfsdf"}}
 
 
 def generate_xml_prompt(d: dict) -> str:
@@ -66,7 +74,10 @@ def generate_xml_prompt(d: dict) -> str:
 
 def test_dict_to_xml_case_1():
     input_dict = {"cheese": "gouda", "title": "Hello", "content": "Blah"}
-    assert generate_xml_prompt(input_dict) == "<cheese>gouda</cheese><title>Hello</title><content>Blah</content>"
+    assert (
+        generate_xml_prompt(input_dict)
+        == "<cheese>gouda</cheese><title>Hello</title><content>Blah</content>"
+    )
 
 
 def test_dict_to_xml_case_2():
@@ -76,4 +87,7 @@ def test_dict_to_xml_case_2():
 
 def test_dict_to_xml_case_3():
     input_dict = {"paragraph": {"sentence": "sdfsdfsdfsdfsdf"}}
-    assert generate_xml_prompt(input_dict) == "<paragraph><sentence>sdfsdfsdfsdfsdf</sentence></paragraph>"
+    assert (
+        generate_xml_prompt(input_dict)
+        == "<paragraph><sentence>sdfsdfsdfsdfsdf</sentence></paragraph>"
+    )
