@@ -3,7 +3,8 @@ import re
 
 def parse_xml_prefix(xml_prefix):
     """
-    This function parses a (potentially unfinished) XML string and returns a dictionary representation of the XML.
+    This function parses a (potentially unfinished) XML string and returns a dictionary
+    representation of the XML.
 
     Parameters:
     xml_prefix (str): The XML string to be parsed.
@@ -23,11 +24,12 @@ def parse_xml_prefix(xml_prefix):
 
 
 def test_parse_1():
-    assert parse_xml_prefix("<cheese>gouda</cheese> <title>Hello</title> <content>Blah</content>") == {
+    expected = {
         "cheese": "gouda",
         "title": "Hello",
         "content": "Blah",
     }
+    assert parse_xml_prefix("<cheese>gouda</cheese> <title>Hello</title> <content>Blah</content>") == expected
 
 
 def test_parse_2():
