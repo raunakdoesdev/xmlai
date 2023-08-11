@@ -39,6 +39,7 @@ completion.completion # 42
 ```
 
 ## Typescript
+<h2 id="typescript>Typescript</h2>
 
 ### Installation
 ```bash
