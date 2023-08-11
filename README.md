@@ -2,7 +2,7 @@
 
 XML AI is the fastest and most ergonomic way to get structured input and output out of your large language model.
 
-Just write your prompt in JSON and we'll autoconvert it to XML that the model can work with. The best part? You can [stream the response](/streaming) back as a JSON object in real time. No more sacrificing streaming for function calling or schema following capabilities. Built and optimized for Anthropic's Claude models, but also including OpenAI support.
+Just write your prompt in JSON and we'll autoconvert it to XML that the model can work with. The best part? You can stream the response back as a JSON object in real time. No more sacrificing streaming for function calling or schema following capabilities. Built and optimized for Anthropic's Claude models, but also including OpenAI support.
 
 
 The library is designed to be as lightweight as possible, and with nearly identical APIs whether you are operating in Python or Javascript/Typescript.
