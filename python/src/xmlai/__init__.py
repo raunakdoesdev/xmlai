@@ -14,12 +14,21 @@ def parse_xml_prefix(xml_prefix):
     """
 
     result = {}
-    for match in re.finditer(r"<([^\/>]+)>(.*?)<\/\1>|<([^\/>]+)>([^<>]*)", xml_prefix):
+
+    any_match = False
+    matches = re.finditer(r"<([^\/>]+)>(.*?)<\/\1>|<([^\/>]+)>([^<>]*)", xml_prefix)
+
+    for match in matches:
+        any_match = True
         g1, g2, g3, g4 = match.groups()
         if g1:
             result[g1] = parse_xml_prefix(g2) if "<" in g2 else g2
         elif g3:
             result[g3] = g4
+
+    if not any_match:
+        return xml_prefix
+
     return result
 
 

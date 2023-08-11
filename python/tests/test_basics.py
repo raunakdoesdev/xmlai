@@ -1,7 +1,7 @@
 from xmlai import parse_xml_prefix, generate_xml_prompt
 
 
-def test_pares_xml_prefix_1():
+def test_parse_xml_prefix_1():
     expected = {
         "cheese": "gouda",
         "title": "Hello",
@@ -15,17 +15,21 @@ def test_pares_xml_prefix_1():
     )
 
 
-def test_pares_xml_prefix_2():
+def test_parse_xml_prefix_2():
     assert parse_xml_prefix("<cheese>gouda</cheese> <title>Hel") == {
         "cheese": "gouda",
         "title": "Hel",
     }
 
 
-def test_pares_xml_prefix_3():
+def test_parse_xml_prefix_3():
     assert parse_xml_prefix(
         "<paragraph><sentence>sdfsdfsdfsdfsdf</sentence></paragraph>"
     ) == {"paragraph": {"sentence": "sdfsdfsdfsdfsdf"}}
+
+
+def test_parse_xml_prefix_4():
+    assert parse_xml_prefix("32") == "32"
 
 
 def test_generate_xml_prompt_case_1():
