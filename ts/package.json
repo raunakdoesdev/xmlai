@@ -5,6 +5,7 @@
     "dev": "tsup src/* --format esm,cjs --dts --watch",
     "test": "vitest",
     "build": "tsup src/* --format esm,cjs --dts",
+    "publish-package": "pnpm run clean && pnpm run build && pnpm publish --access public",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
