@@ -7,6 +7,37 @@ Just write your prompt in JSON and we'll autoconvert it to XML that the model ca
 
 The library is designed to be as lightweight as possible, and with nearly identical APIs whether you are operating in Python or Javascript/Typescript.
 
+
+## Python
+
+### Installation
+```bash
+pip install xmlai
+```
+
+### Getting Started
+
+```python
+from xmlai.llm import anthropic_prompt
+
+prompt = anthropic_prompt(
+    {
+        "question": "what is the answer to the ultimate question of life?",
+        "reference": "The Hitchhiker's Guide to the Galaxy",
+    },
+    response_root_tag="answer",
+)
+
+completion = anthropic.completions.create(
+    model="claude-instant-1",
+    max_tokens_to_sample=300,
+    temperature=0.1,
+    **prompt,
+)
+
+completion.completion # 42
+```
+
 ## Typescript
 
 ### Installation
