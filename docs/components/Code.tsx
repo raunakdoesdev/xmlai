@@ -6,34 +6,56 @@ import {
   SelectTrigger,
   SelectValue,
 } from "components/ui/select";
+import { atom, useAtomValue, useSetAtom } from "jotai";
 
-import { useAtomValue, useSetAtom, atom } from "jotai";
+type Language = "python" | "ts";
 
-const languageAtom = atom<"python" | "ts">("python");
-
-export function Python({ children }: { children: React.ReactNode }) {
-  const language = useAtomValue(languageAtom);
+export function Python({
+  children,
+  language,
+}: {
+  children: React.ReactNode;
+  language: Language;
+}) {
   return language === "python" ? <div>{children}</div> : null;
 }
 
-export function Typescript({ children }: { children: React.ReactNode }) {
-  const language = useAtomValue(languageAtom);
+export function Typescript({
+  children,
+  language,
+}: {
+  children: React.ReactNode;
+  language: Language;
+}) {
   return language === "ts" ? <div>{children}</div> : null;
 }
 
+import React, { useState } from "react";
+
 /** Display code snipet with utilities for swapping languages */
 export default function Code({ children }: { children: React.ReactNode }) {
-  const language = useAtomValue(languageAtom);
-  const setLanguage = useSetAtom(languageAtom);
+  const [language, setLanguage] = useState<"python" | "ts">("python");
+
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { language } as any);
+    }
+    return child;
+  });
 
   return (
     <div>
       <Select
         value={language}
-        onValueChange={(v) => setLanguage(v as typeof language)}
+        onValueChange={(v) => {
+          setLanguage(v as typeof language);
+        }}
       >
         <SelectTrigger className="w-[120px]">
-          <SelectValue placeholder="Select a Language" />
+          <SelectValue
+            className="text-xl p-1"
+            placeholder="Select a Language"
+          />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -42,7 +64,7 @@ export default function Code({ children }: { children: React.ReactNode }) {
           </SelectGroup>
         </SelectContent>
       </Select>
-      {children}
+      {childrenWithProps}
     </div>
   );
 }
