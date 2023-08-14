@@ -3,10 +3,12 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "components/ui/select";
-import { atom, useAtomValue, useSetAtom } from "jotai";
+import { atom, useAtom } from "jotai";
+import { ClipboardCopy } from "lucide-react";
 
 type Language = "python" | "ts";
 
@@ -32,9 +34,12 @@ export function Typescript({
 
 import React, { useState } from "react";
 
+const languageAtom = atom<Language>("python");
+
 /** Display code snipet with utilities for swapping languages */
 export default function Code({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<"python" | "ts">("python");
+  //   const [language, setLanguage] = useState<"python" | "ts">("python");
+  const [language, setLanguage] = useAtom(languageAtom);
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -44,27 +49,26 @@ export default function Code({ children }: { children: React.ReactNode }) {
   });
 
   return (
-    <div>
-      <Select
-        value={language}
-        onValueChange={(v) => {
-          setLanguage(v as typeof language);
-        }}
-      >
-        <SelectTrigger className="w-[120px]">
-          <SelectValue
-            className="text-xl p-1"
-            placeholder="Select a Language"
-          />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectItem value="python">Python</SelectItem>
-            <SelectItem value="ts">Typescript</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+    <>
+      <div className="flex flex-row justify-end items-center">
+        <Select
+          value={language}
+          onValueChange={(v) => {
+            setLanguage(v as typeof language);
+          }}
+        >
+          <SelectTrigger className="w-[120px] border-none">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="python">Python</SelectItem>
+              <SelectItem value="ts">Typescript</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
       {childrenWithProps}
-    </div>
+    </>
   );
 }

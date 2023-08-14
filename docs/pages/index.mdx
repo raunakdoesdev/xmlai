@@ -9,6 +9,8 @@ Just write your prompt in JSON and we'll autoconvert it to XML that the model ca
 
 The library is designed to be as lightweight as possible, and with nearly identical APIs whether you are operating in Python or Javascript/Typescript.
 
+
+### Installation
 <Code>
 <Python>
 ```python
@@ -22,26 +24,10 @@ pnpm install xlmai
 </Typescript>
 </Code>
 
-<div className="w-full grid grid-cols-1 gap-4 lg:grid-cols-2">
-<div>
-
-
-## Python
-
-
-### Installation
-
-```python filename="Terminal" switcher
-pip install xmlai
-```
-
-```typescript filename="Terminal" switcher
-pnpm install xmlai
-```
-
-
 ### Getting Started
 
+<Code>
+<Python>
 ```python
 from xmlai.llm import anthropic_prompt
 
@@ -62,20 +48,8 @@ completion = anthropic.completions.create(
 
 completion.completion # 42
 ```
-
-</div>
-
-
-<div>
-## Typescript
-
-### Installation
-```bash
-pnpm install xmlai
-```
-
-### Getting Started
-
+</Python>
+<Typescript>
 ```typescript
 import { anthropic_prompt } from "xmlai/llm";
 
@@ -96,8 +70,8 @@ const completion = await anthropic.completions.create({
 
 completion.completion // 42
 ```
-</div>
-</div>
+</Typescript>
+</Code>
 
 The generated prompts look like this:
 ```json
