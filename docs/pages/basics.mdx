@@ -1,4 +1,5 @@
 import Code, {Python, Typescript} from "components/Code";
+import { Callout } from 'nextra/components'
 
 ## Generate XML Prompt
 
@@ -10,11 +11,64 @@ A basic utility of the library is converting from a dictionary format to a XML f
 from xmlai import generate_xml_prompt
 
 generate_xml_prompt({
-
+    "cheese": "gouda",
+    "title": "Hello",
+    "content": "Blah"
 })
 ```
 </Python>
 <Typescript>
+```ts
+import {generateXmlPrompt} from "xmlai"
 
+generate_xml_prompt({
+    cheese: "gouda",
+    title: "Hello",
+    content: "Blah"
+})
+```
 </Typescript>
 </Code>
+
+Both of these will generate the following output:
+```xml
+<cheese>gouda</cheese><title>Hello</title><content>Blah</content>
+```
+
+## Streaming Results
+
+<Callout type="warning">
+    There is not currently support for arrays of objects or multiple child keys at the same level that have the same key string. PRs are welcome for this!
+</Callout>
+
+A core feature of the library is being able to stream out structured JSON from a partial LLM completion. We use the `parseXmlPrefix` function to handle this.
+
+
+<Code>
+<Python>
+```python
+from xmlai import parse_xml_prefix
+
+parse_xml_prefix("<foo><cheese>gouda</cheese><title>Hel")
+```
+</Python>
+<Typescript>
+```ts
+import {parseXmlPrefix} from "xmlai"
+
+parse_xml_prefix("<foo><cheese>gouda</cheese><title>Hel")
+```
+</Typescript>
+</Code>
+
+This results in the following parsed JSON:
+```json
+{
+    "foo": {
+        "cheese": "gouda",
+        "title": "Hel"
+    }
+}
+```
+
+This form of streaming is useful when populating values in different parts of a user interface dynamically.
