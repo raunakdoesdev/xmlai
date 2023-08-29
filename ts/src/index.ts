@@ -7,7 +7,7 @@ import { StringJson } from "./llm";
  * @param {string} xmlPrefix The XML string to be parsed.
  * @return  A dictionary representation of the XML string. All keys/values are strings.
  */
-export function parseXmlPrefix(xmlPrefix: string): any {
+export function parse_xml_prefix(xmlPrefix: string): any {
   const result: any = {};
   let anyMatch = false;
   const matches = xmlPrefix.matchAll(
@@ -18,7 +18,7 @@ export function parseXmlPrefix(xmlPrefix: string): any {
     anyMatch = true;
     const [_, g1, g2, g3, g4] = match;
     if (g1) {
-      result[g1] = g2.includes("<") ? parseXmlPrefix(g2) : g2;
+      result[g1] = g2.includes("<") ? parse_xml_prefix(g2) : g2;
     } else if (g3) {
       result[g3] = g4;
     }
@@ -37,12 +37,12 @@ export function parseXmlPrefix(xmlPrefix: string): any {
  * @param d The dictionary to be converted.
  * @return The XML string representation of the dictionary.
  */
-export function generateXmlPrompt(d: StringJson) {
+export function generate_xml_prompt(d: StringJson) {
   let xmlStr = "";
   for (const [key, value] of Object.entries(d)) {
     xmlStr += `<${key}>`;
     if (typeof value === "object") {
-      xmlStr += generateXmlPrompt(value);
+      xmlStr += generate_xml_prompt(value);
     } else {
       xmlStr += value;
     }

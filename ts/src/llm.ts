@@ -1,4 +1,4 @@
-import { generateXmlPrompt } from ".";
+import { generate_xml_prompt } from ".";
 
 /** JSON object with only strings as keys/values. */
 export type StringJson = string | { [key: string]: StringJson };
@@ -26,12 +26,12 @@ interface OpenAIPrompt {
  * @param response_root_tag The root tag for the response.
  * @returns a JSON prompt and stop sequences that can be passed into Anthropic
  */
-export function anthropicPrompt(
+export function anthropic_prompt(
   prompt: StringJson,
   response_root_tag = "response"
 ) {
   return {
-    prompt: `\n\nHuman:${generateXmlPrompt(
+    prompt: `\n\nHuman:${generate_xml_prompt(
       prompt
     )}\n\nAssistant:<${response_root_tag}>`,
     stop_sequences: [`</${response_root_tag}>`],
@@ -46,7 +46,7 @@ export function anthropicPrompt(
  * @param custom_system_prefix The custom system prefix for the response.
  * @returns The JSON prompt and stop sequences that can be passed into OpenAI.
  */
-export function openaiChatPrompt({
+export function openai_chat_prompt({
   messages,
   response_root_tag = "response",
   custom_system_prefix,
@@ -57,7 +57,7 @@ export function openaiChatPrompt({
 
   for (const message of messages) {
     if ("content" in message && typeof message["content"] === "object") {
-      message["content"] = generateXmlPrompt(message["content"]);
+      message["content"] = generate_xml_prompt(message["content"]);
     }
     if (message["role"] === "system") {
       if (!("content" in message)) {

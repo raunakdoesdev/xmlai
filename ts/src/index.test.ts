@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { parseXmlPrefix, generateXmlPrompt } from ".";
+import { parse_xml_prefix, generate_xml_prompt } from ".";
 
 test("parseXmlPrefix case 1", () => {
   const expected = {
@@ -8,14 +8,14 @@ test("parseXmlPrefix case 1", () => {
     content: "Blah",
   };
   expect(
-    parseXmlPrefix(
+    parse_xml_prefix(
       "<cheese>gouda</cheese> <title>Hello</title> <content>Blah</content>"
     )
   ).toEqual(expected);
 });
 
 test("parseXmlPrefix case 2", () => {
-  expect(parseXmlPrefix("<cheese>gouda</cheese> <title>Hel")).toEqual({
+  expect(parse_xml_prefix("<cheese>gouda</cheese> <title>Hel")).toEqual({
     cheese: "gouda",
     title: "Hel",
   });
@@ -23,7 +23,7 @@ test("parseXmlPrefix case 2", () => {
 
 test("parseXmlPrefix case 3", () => {
   expect(
-    parseXmlPrefix(
+    parse_xml_prefix(
       "<paragraph><sentence>sdfsdfsdfsdfsdf</sentence></paragraph>"
     )
   ).toEqual({
@@ -32,26 +32,26 @@ test("parseXmlPrefix case 3", () => {
 });
 
 test("parseXmlPrefix case 4", () => {
-  expect(parseXmlPrefix("32")).toBe("32");
+  expect(parse_xml_prefix("32")).toBe("32");
 });
 
 test("generateXmlPrompt case 1", () => {
   const inputDict = { cheese: "gouda", title: "Hello", content: "Blah" };
-  expect(generateXmlPrompt(inputDict)).toBe(
+  expect(generate_xml_prompt(inputDict)).toBe(
     "<cheese>gouda</cheese><title>Hello</title><content>Blah</content>"
   );
 });
 
 test("generateXmlPrompt case 2", () => {
   const inputDict = { cheese: "gouda", title: "Hel" };
-  expect(generateXmlPrompt(inputDict)).toBe(
+  expect(generate_xml_prompt(inputDict)).toBe(
     "<cheese>gouda</cheese><title>Hel</title>"
   );
 });
 
 test("generateXmlPrompt case 3", () => {
   const inputDict = { paragraph: { sentence: "sdfsdfsdfsdfsdf" } };
-  expect(generateXmlPrompt(inputDict)).toBe(
+  expect(generate_xml_prompt(inputDict)).toBe(
     "<paragraph><sentence>sdfsdfsdfsdfsdf</sentence></paragraph>"
   );
 });

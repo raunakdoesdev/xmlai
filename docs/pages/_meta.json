@@ -1,4 +1,5 @@
 {
   "index": "Quick Start",
-  "llm": "LLMs"
+  "basics": "Basics",
+  "llm": "LLM Integrations"
 }
