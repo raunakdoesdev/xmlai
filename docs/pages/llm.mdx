@@ -63,3 +63,62 @@ The generated prompts look like this:
    ]
 }
 ```
+
+
+## OpenAI
+
+<Code>
+<Python>
+```python
+from xmlai.llm import openai_chat_prompt
+
+prompt = openai_chat_prompt(
+    messages=[
+        {"role": "system"},
+        {
+            "role": "user",
+            "content": {
+                "question": "what is the answer to the ultimate question of life?",
+                "reference": "The Hitchhiker's Guide to the Galaxy",
+            },
+        },
+    ],
+    response_root_tag="answer",
+)
+completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", **prompt)
+
+completion.choices[0].message["content"] #42
+```
+</Python>
+<Typescript>
+```typescript
+import { openai_chat_prompt } from "xmlai/llm";
+
+const prompt = openai_chat_prompt({
+messages: [
+    { role: "system" },
+    {
+    role: "user",
+    content: {
+        question: "what is the answer to the ultimate question of life?",
+        reference: "The Hitchhiker's Guide to the Galaxy",
+    },
+    },
+],
+response_root_tag: "answer",
+});
+
+const completion = await openai.createChatCompletion({
+model: "gpt-3.5-turbo",
+...prompt,
+});
+
+completion.data.choices[0].message.content // 42
+```
+</Typescript>
+</Code>
+
+In this case, a simple system message is injected into the chat messages:
+```txt
+Respond in XML. Your must start your responses with <{response_root_tag}>\n\n
+```
