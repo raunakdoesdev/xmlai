@@ -24,7 +24,7 @@ const prompt = anthropic_prompt(
         question: "what is the answer to the ultimate question of life?",
         reference: "The Hitchhiker's Guide to the Galaxy",
     },
-    response_root_tag="answer"
+    "answer"
 );
 
 const completion = await anthropic.completions.create({
