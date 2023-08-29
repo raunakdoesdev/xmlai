@@ -8,6 +8,7 @@ Just write your prompt in JSON and we'll autoconvert it to XML that the model ca
 
 The library is designed to be as lightweight as possible, and with nearly identical APIs whether you are operating in Python or Javascript/Typescript.
 
+
 ### Installation
 <Code>
 <Python>
@@ -56,7 +57,7 @@ const prompt = anthropic_prompt(
         question: "what is the answer to the ultimate question of life?",
         reference: "The Hitchhiker's Guide to the Galaxy",
     },
-    response_root_tag="answer"
+    "answer"
 );
 
 const completion = await anthropic.completions.create({
