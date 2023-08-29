@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { anthropic_prompt, openai_chat_prompt } from "./llm";
+import { anthropicPrompt, openaiChatPrompt } from "./llm";
 import Anthropic from "@anthropic-ai/sdk";
 import dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
@@ -10,7 +10,7 @@ test("anthropic test 1", async () => {
   const anthropic = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY,
   });
-  const prompt = anthropic_prompt(
+  const prompt = anthropicPrompt(
     {
       question: "what is the answer to the ultimate question of life?",
       reference: "The Hitchhiker's Guide to the Galaxy",
@@ -41,7 +41,7 @@ test("openai chat test 1", async () => {
   });
   console.log(chatCompletion.data.choices[0].message);
 
-  const prompt = openai_chat_prompt({
+  const prompt = openaiChatPrompt({
     messages: [
       { role: "system" },
       {

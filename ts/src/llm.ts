@@ -26,7 +26,7 @@ interface OpenAIPrompt {
  * @param response_root_tag The root tag for the response.
  * @returns a JSON prompt and stop sequences that can be passed into Anthropic
  */
-export function anthropic_prompt(
+export function anthropicPrompt(
   prompt: StringJson,
   response_root_tag = "response"
 ) {
@@ -46,7 +46,7 @@ export function anthropic_prompt(
  * @param custom_system_prefix The custom system prefix for the response.
  * @returns The JSON prompt and stop sequences that can be passed into OpenAI.
  */
-export function openai_chat_prompt({
+export function openaiChatPrompt({
   messages,
   response_root_tag = "response",
   custom_system_prefix,
