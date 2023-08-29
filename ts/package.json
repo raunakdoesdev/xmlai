@@ -1,17 +1,10 @@
 {
   "name": "xmlai",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "main": "dist/index.js",
   "files": [
     "dist/"
   ],
-  "scripts": {
-    "dev": "tsup src/* --format esm,cjs --dts --watch ",
-    "test": "vitest",
-    "build": "tsup src/* --format esm,cjs --dts --tsconfig tsconfig.build.json",
-    "publish-package": "pnpm run clean && pnpm run build && pnpm publish --access public",
-    "clean": "rm -rf dist"
-  },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.5.10",
     "dotenv": "^16.3.1",
@@ -24,16 +17,25 @@
     "zod": "^3.22.0",
     "zod-to-ts": "^1.1.4"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    },
-    "./llm": {
-      "import": "./dist/llm.js",
-      "require": "./dist/llm.mjs",
-      "types": "./dist/llm.d.ts"
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/index.d.ts"
+      ],
+      "llm": [
+        "dist/llm.d.ts"
+      ]
     }
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./llm": "./dist/llm.js"
+  },
+  "scripts": {
+    "dev": "tsup src/* --format esm,cjs --dts --watch ",
+    "test": "vitest",
+    "build": "tsup src/* --format esm,cjs --dts --tsconfig tsconfig.build.json",
+    "publish-package": "pnpm run clean && pnpm run build && pnpm publish --access public",
+    "clean": "rm -rf dist"
   }
 }

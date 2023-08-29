@@ -3,7 +3,7 @@
     "lib": ["es2017"],
     "module": "NodeNext",
     "target": "ES2015",
-    "moduleResolution": "NodeNext",
-    "exclude": ["src/**/*.test.ts"]
-  }
+    "moduleResolution": "NodeNext"
+  },
+  "exclude": ["src/**/*.test.ts"]
 }

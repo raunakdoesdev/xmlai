@@ -19,6 +19,13 @@ interface OpenAIPrompt {
   custom_system_prefix?: string;
 }
 
+/**
+ * Generates an Anthropic prompt for the given XML prompt and response root tag.
+ *
+ * @param prompt The XML prompt.
+ * @param response_root_tag The root tag for the response.
+ * @returns a JSON prompt and stop sequences that can be passed into Anthropic
+ */
 export function anthropic_prompt(
   prompt: StringJson,
   response_root_tag = "response"
@@ -31,6 +38,14 @@ export function anthropic_prompt(
   };
 }
 
+/**
+ * Generate an OpenAI Chat Prompt from (optionally) JSON messages
+ *
+ * @param messages The array of OpenAIMessageJson objects. The content of these messages may be JSON.
+ * @param response_root_tag The root tag for the response.
+ * @param custom_system_prefix The custom system prefix for the response.
+ * @returns The JSON prompt and stop sequences that can be passed into OpenAI.
+ */
 export function openai_chat_prompt({
   messages,
   response_root_tag = "response",
