@@ -54,4 +54,4 @@ Note that we feed the opening tag to the beginning of the assistant's response! 
 ## Why another prompting library?
 Anthropic's LLM Claude is trained on lots and lots of XML data. It is quite good at following XML schemas. In fact at the [Anthropic Hackathon](https://twitter.com/sauhaarda/status/1685892051043508224?s=20), the prompting workshop specifically presented some extra tips on how to get the best out of Claude when it comes to XML. I incorporated those tricks into this library to make it easier for others to take advantage of.
 
-Also, [the regex for dealing with XML streams](https://github.com/sauhaardac/xmlai/blob/9a558d855e6b4e64f933599a249a0864c41eb273/python/src/xmlai/__init__.py#L17C41-L17C41) is surprisingly grotesque. I figured I'd limit the monstrosity to one codebase where it can be tested and maintained.
+Also, [the regex for dealing with XML streams](https://github.com/raunakdoesdev/xmlai/blob/9a558d855e6b4e64f933599a249a0864c41eb273/python/src/xmlai/__init__.py#L17C41-L17C41) is surprisingly grotesque. I figured I'd limit the monstrosity to one codebase where it can be tested and maintained.

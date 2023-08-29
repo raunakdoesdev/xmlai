@@ -27,8 +27,8 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/sauhaardac/xmlai"
-"Bug Tracker" = "https://github.com/sauhaardac/xmlai/issues"
+"Homepage" = "https://github.com/raunakdoesdev/xmlai"
+"Bug Tracker" = "https://github.com/raunakdoesdev/xmlai/issues"
 
 [tool.ruff]
 line-length = 120

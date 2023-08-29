@@ -5,9 +5,9 @@ import Link from "next/link";
 const config: DocsThemeConfig = {
   logo: <span>XML AI</span>,
   project: {
-    link: "https://github.com/sauhaardac/xmlai",
+    link: "https://github.com/raunakdoesdev/xmlai",
   },
-  docsRepositoryBase: "https://github.com/sauhaardac/xmlai/tree/main/docs",
+  docsRepositoryBase: "https://github.com/raunakdoesdev/xmlai/tree/main/docs",
   footer: {
     // text: "Built by Raunak(https://raunakdoes.dev)",
     component: (
