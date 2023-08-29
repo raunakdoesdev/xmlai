@@ -6,9 +6,9 @@
     "dist/"
   ],
   "scripts": {
-    "dev": "tsup src/* --format esm,cjs --dts --watch",
+    "dev": "tsup src/* --format esm,cjs --dts --watch ",
     "test": "vitest",
-    "build": "tsup src/* --format esm,cjs --dts",
+    "build": "tsup src/* --format esm,cjs --dts --tsconfig tsconfig.build.json",
     "publish-package": "pnpm run clean && pnpm run build && pnpm publish --access public",
     "clean": "rm -rf dist"
   },
@@ -25,7 +25,15 @@
     "zod-to-ts": "^1.1.4"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./llm": "./dist/llm.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./llm": {
+      "import": "./dist/llm.js",
+      "require": "./dist/llm.mjs",
+      "types": "./dist/llm.d.ts"
+    }
   }
 }
