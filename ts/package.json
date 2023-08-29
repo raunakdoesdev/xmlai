@@ -1,9 +1,9 @@
 {
   "name": "xmlai",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist/"
   ],
   "scripts": {
     "dev": "tsup src/* --format esm,cjs --dts --watch",
@@ -23,5 +23,9 @@
   "dependencies": {
     "zod": "^3.22.0",
     "zod-to-ts": "^1.1.4"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./llm": "./dist/llm.js"
   }
 }
